@@ -1,0 +1,30 @@
+/* options.css — settings page layout. */
+.wrap { max-width: 680px; margin: 0 auto; padding: 28px 20px 60px; display: grid; gap: 18px; }
+
+.page-head { display: flex; align-items: center; gap: 14px; }
+.page-head .logo { width: 44px; height: 44px; border-radius: 10px; }
+.page-head h1 { font-size: 20px; }
+
+.card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: 14px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+
+.setting { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.setting small { font-weight: 400; }
+.setting input[type="number"], .setting select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.switches { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 6px; }
+.switches .switch + .switch { border-top: 1px solid var(--border); }
+
+.foot-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.chip[data-state="ok"] { color: var(--success); }
+.chip[data-state="bad"] { color: var(--danger); }

@@ -1,0 +1,79 @@
+/* popup.css — layout specific to the toolbar popup. */
+body { width: 344px; }
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+.logo { width: 32px; height: 32px; border-radius: 8px; flex: none; }
+.head-text { flex: 1; min-width: 0; }
+.head-text h1 { font-size: 15px; }
+.icon-btn {
+  flex: none;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+}
+.icon-btn:hover { color: var(--text); background: var(--bg-sunken); }
+
+.body { padding: 14px; display: grid; gap: 12px; }
+
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+.link-btn {
+  background: none; border: none; color: var(--brand);
+  font-size: 12px; font-weight: 600; padding: 2px 4px;
+}
+.link-btn:hover:not(:disabled) { text-decoration: underline; }
+
+.drafts-card { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.drafts-count { font-size: 28px; font-weight: 700; line-height: 1; }
+.drafts-hint { max-width: 170px; text-align: right; }
+
+.field-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+
+.toggles { padding: 4px 14px; }
+.toggles .switch + .switch { border-top: 1px solid var(--border); }
+
+.actions { display: flex; gap: 8px; }
+.actions .btn-primary { flex: 1; }
+.actions .btn-danger { flex: none; padding-inline: 18px; }
+
+.progress-wrap { display: grid; gap: 6px; }
+
+.log-wrap { max-height: 148px; overflow: hidden; }
+.log li .name { flex: 1; }
+.log li .why { flex: none; color: var(--text-muted); }
+
+.banner {
+  margin: 0;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  background: var(--brand-soft);
+  color: var(--danger);
+  border: 1px solid var(--border);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.foot a { color: var(--text-muted); text-decoration: none; }
+.foot a:hover { color: var(--brand); text-decoration: underline; }
+.dot-sep { opacity: .5; }
+.foot .muted { margin-left: auto; }
+
+.hidden { display: none !important; }

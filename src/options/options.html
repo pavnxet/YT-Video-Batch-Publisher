@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batch Publisher — Settings</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="page-head">
+      <img src="icons/icon48.png" alt="" class="logo">
+      <div>
+        <h1>Batch Publisher settings</h1>
+        <p class="muted small">Defaults applied whenever you publish drafts.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Publishing</h2>
+      <div class="grid">
+        <label class="setting">
+          <span>Default visibility</span>
+          <select id="defaultVisibility">
+            <option value="Public">Public</option>
+            <option value="Unlisted">Unlisted</option>
+            <option value="Private">Private</option>
+          </select>
+        </label>
+
+        <label class="setting">
+          <span>Action delay (ms)</span>
+          <input type="number" id="actionDelayMs" min="0" max="10000" step="50">
+          <small class="muted">Pause between videos. Raise it on slower connections.</small>
+        </label>
+
+        <label class="setting">
+          <span>Step timeout (ms)</span>
+          <input type="number" id="stepTimeoutMs" min="1000" max="60000" step="500">
+          <small class="muted">How long to wait for a UI element before giving up.</small>
+        </label>
+
+        <label class="setting">
+          <span>Retries per video</span>
+          <input type="number" id="maxRetries" min="0" max="5" step="1">
+          <small class="muted">Extra attempts after a failure.</small>
+        </label>
+      </div>
+
+      <div class="switches">
+        <label class="switch">
+          <span class="label">Made for kids <small>Answer YouTube's "made for kids" question</small></span>
+          <input type="checkbox" id="madeForKids"><span class="track"></span>
+        </label>
+        <label class="switch">
+          <span class="label">Continue on error <small>Keep publishing the rest if one video fails</small></span>
+          <input type="checkbox" id="continueOnError"><span class="track"></span>
+        </label>
+        <label class="switch">
+          <span class="label">Auto-close share dialog <small>Dismiss the "video published" popup automatically</small></span>
+          <input type="checkbox" id="autoCloseShareDialog"><span class="track"></span>
+        </label>
+        <label class="switch">
+          <span class="label">Dry run by default <small>Preview without changing anything</small></span>
+          <input type="checkbox" id="dryRun"><span class="track"></span>
+        </label>
+        <label class="switch">
+          <span class="label">Debug logging <small>Verbose console output for troubleshooting</small></span>
+          <input type="checkbox" id="debug"><span class="track"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Appearance</h2>
+      <label class="setting">
+        <span>Theme</span>
+        <select id="theme">
+          <option value="auto">Match system</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+    </section>
+
+    <div class="foot-row">
+      <span class="chip" id="saveChip" data-state="ok">Saved</span>
+      <button id="reset" class="btn-secondary" type="button">Restore defaults</button>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

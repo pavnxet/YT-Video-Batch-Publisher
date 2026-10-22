@@ -1,5 +1,22 @@
 {
+  "name": "yt-video-batch-publisher",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch-publish YouTube Studio drafts from a Chrome/Firefox extension.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build/build.mjs",
+    "build:chrome": "node build/build.mjs chrome",
+    "build:firefox": "node build/build.mjs firefox",
+    "validate": "node build/validate.mjs",
+    "test": "node --test tests/",
+    "ci": "npm run build && npm run validate && npm test"
+  },
   "devDependencies": {
-    "addons-linter": "^10.2.0"
+    "jsdom": "^24.1.3"
   }
 }

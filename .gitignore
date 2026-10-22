@@ -1,0 +1,20 @@
+# Dependencies — install with `npm install`, never commit.
+node_modules/
+npm-debug.log*
+
+# Build output — regenerate with `npm run build`.
+dist/
+
+# Store / packaging artifacts
+*.zip
+*.crx
+*.pem
+*.xpi
+_metadata/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
