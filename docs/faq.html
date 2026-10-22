@@ -53,6 +53,20 @@
     <h2>Common problems</h2>
 
     <details open>
+      <summary><strong>"Manifest file is missing or unreadable"</strong></summary>
+      <p>You are pointing the browser at a folder that has no <code>manifest.json</code>. This almost
+      always means one of two things:</p>
+      <ul>
+        <li><strong>You selected the repository root.</strong> The source tree keeps its manifests in
+        <code>manifests/</code> and builds the loadable extension into <code>dist/</code> — the top
+        level of the repo is not loadable. Select <code>dist/chrome</code> instead, or download a
+        <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest">release build</a>.</li>
+        <li><strong>You selected the zip, or the folder above the extracted files.</strong> Extract the
+        zip first, then select the folder that directly contains <code>manifest.json</code>.</li>
+      </ul>
+    </details>
+
+    <details open>
       <summary><strong>The popup says "Not on Studio"</strong></summary>
       <p>The extension only activates on <code>studio.youtube.com</code>. Check that:</p>
       <ul>
@@ -136,8 +150,10 @@
 
     <details>
       <summary><strong>Why do I have to build it myself?</strong></summary>
-      <p>The build turns one source tree into both a Chrome and a Firefox package, which keeps the two
-      from drifting apart. It takes a few seconds — see <a href="install.html">Installation</a>.</p>
+      <p>You don't have to — the <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest">releases page</a>
+      has ready-made zips for both browsers. Building from source is only for people who want to
+      change the code; it takes a few seconds and needs Node.js 20+. See
+      <a href="install.html">Installation</a>.</p>
     </details>
 
     <h2>Reporting a bug</h2>

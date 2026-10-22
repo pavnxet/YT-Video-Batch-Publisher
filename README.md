@@ -9,6 +9,7 @@ Pick a visibility, press one button, and watch them all go out — with a live
 progress bar and a Stop button you can actually use.
 
 [![CI](https://github.com/pavnxet/YT-Video-Batch-Publisher/actions/workflows/ci.yml/badge.svg)](https://github.com/pavnxet/YT-Video-Batch-Publisher/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/pavnxet/YT-Video-Batch-Publisher?color=e11d21&label=download)](https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-2.0.0-e11d21.svg)](CHANGELOG.md)
 [![Chrome MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?logo=googlechrome&logoColor=white)](#-install)
@@ -58,25 +59,56 @@ This extension does that loop for you.
 
 ## 📥 Install
 
-### Chrome, Edge, Brave, Opera
+> [!WARNING]
+> **Do not load the repository root into your browser.** The source tree has no
+> `manifest.json` at the top level — the loadable extension is generated into
+> `dist/`. Download a release below, or build it yourself.
 
-1. **Download** the latest build — clone this repo or grab the source ZIP.
-2. Run `npm install && npm run build` to generate `dist/chrome`.
-3. Open `chrome://extensions/` and switch on **Developer mode** (top right).
-4. Click **Load unpacked** and select the **`dist/chrome`** folder.
+### Option A — grab a ready-made build (no tools needed)
+
+| Browser | Download |
+|---|---|
+| **Chrome · Edge · Brave · Opera** | [**yt-video-batch-publisher-2.0.0-chrome.zip**](https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest) |
+| **Firefox 115+** | [**yt-video-batch-publisher-2.0.0-firefox.zip**](https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest) |
+
+**Chrome / Edge / Brave / Opera**
+
+1. **Download the Chrome zip** and **extract it** to a folder you will keep
+   (e.g. `C:\Extensions\yt-batch-publisher`). Chrome cannot load an extension
+   from inside a `.zip`.
+2. Open `chrome://extensions/` (or `edge://extensions`, `brave://extensions`).
+3. Switch on **Developer mode** — the toggle in the top-right corner.
+4. Click **Load unpacked** and select the folder you extracted — the one
+   containing `manifest.json`.
 5. Pin the extension to your toolbar.
 
-### Firefox
+**Firefox**
 
-1. Run `npm install && npm run build` to generate `dist/firefox`.
+1. **Download the Firefox zip** and extract it.
 2. Open `about:debugging#/runtime/this-firefox`.
-3. Click **Load Temporary Add-on…** and select **`dist/firefox/manifest.json`**.
+3. Click **Load Temporary Add-on…** and select the extracted `manifest.json`.
 
-For a permanent install, sign the build:
+For a permanent Firefox install, sign the extracted folder:
 
 ```bash
-npx web-ext build -s dist/firefox
+npx web-ext build -s <extracted-folder>
 ```
+
+### Option B — build from source
+
+Needs [Node.js 20+](https://nodejs.org/).
+
+```bash
+git clone https://github.com/pavnxet/YT-Video-Batch-Publisher.git
+cd YT-Video-Batch-Publisher
+npm install
+npm run build
+```
+
+That produces `dist/chrome` and `dist/firefox`. Load **`dist/chrome`** as
+described above (not the repository root).
+
+📖 Step-by-step, with screenshots: **[Installation guide](https://pavnxet.github.io/YT-Video-Batch-Publisher/install.html)**
 
 ---
 

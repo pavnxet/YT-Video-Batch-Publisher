@@ -58,6 +58,46 @@ const STATIC = [
   ['ui/theme.css', 'theme.css']
 ];
 
+/**
+ * A plain-text install note shipped inside each package. It matters because
+ * "Load unpacked" fails with "Manifest file is missing or unreadable" whenever
+ * someone points the browser at a folder that has no manifest.json — which is
+ * exactly what the repository root looks like.
+ */
+function installNote(target, version) {
+  const other = target === 'chrome' ? 'firefox' : 'chrome';
+  const page = target === 'chrome' ? 'chrome://extensions' : 'about:debugging#/runtime/this-firefox';
+  const steps = target === 'chrome'
+    ? `3. Turn ON "Developer mode" (the toggle in the top-right corner).
+4. Click "Load unpacked".
+5. Select THIS folder - the one containing manifest.json.`
+    : `3. Click "Load Temporary Add-on...".
+4. Select the manifest.json file in THIS folder.
+
+   A temporary add-on disappears when Firefox restarts. To keep it, sign the
+   folder with:  npx web-ext build -s <this folder>`;
+
+  return `YouTube Video Batch Publisher ${version} - ${target}
+${'='.repeat(56)}
+
+1. Extract this whole folder somewhere permanent.
+   Do NOT run it from inside the .zip - the browser cannot load a
+   zipped extension.
+
+2. Open: ${page}
+
+${steps}
+
+Then open https://studio.youtube.com/ and click the extension icon.
+
+If you move or rename this folder later, reload the extension from the
+extensions page or it will be disabled.
+
+Wrong browser? Use the ${other} package instead:
+https://github.com/pavnxet/YT-Video-Batch-Publisher/releases/latest
+`;
+}
+
 async function bundle(files) {
   const parts = [];
   for (const rel of files) {
@@ -82,6 +122,7 @@ async function buildTarget(target) {
   }
   await cp(path.join(root, 'icons'), path.join(out, 'icons'), { recursive: true });
   await writeFile(path.join(out, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+  await writeFile(path.join(out, 'HOW-TO-INSTALL.txt'), installNote(target, manifest.version));
 
   const entries = await readdir(out);
   console.log(`✔ dist/${target}  (${entries.length} entries, v${manifest.version})`);
