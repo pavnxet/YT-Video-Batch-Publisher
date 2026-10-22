@@ -3,7 +3,26 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "Batch-publish YouTube Studio drafts from a Chrome/Firefox extension.",
+  "description": "Batch-publish YouTube Studio drafts from a Chrome or Firefox extension — with live progress, retries and a dry-run preview.",
+  "keywords": [
+    "youtube",
+    "youtube-studio",
+    "batch-publish",
+    "browser-extension",
+    "chrome-extension",
+    "firefox-addon",
+    "manifest-v3",
+    "automation"
+  ],
+  "homepage": "https://pavnxet.github.io/YT-Video-Batch-Publisher/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavnxet/YT-Video-Batch-Publisher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pavnxet/YT-Video-Batch-Publisher/issues"
+  },
+  "author": "pavnxet",
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -13,6 +32,7 @@
     "build:chrome": "node build/build.mjs chrome",
     "build:firefox": "node build/build.mjs firefox",
     "validate": "node build/validate.mjs",
+    "preview": "node build/preview.mjs",
     "test": "node --test tests/",
     "ci": "npm run build && npm run validate && npm test"
   },

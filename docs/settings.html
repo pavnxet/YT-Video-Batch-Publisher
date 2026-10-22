@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings reference — YouTube Video Batch Publisher</title>
+<meta name="description" content="Every setting in the YouTube Video Batch Publisher extension: default visibility, made for kids, action delay, step timeout, retries, dry run and theme.">
+<link rel="canonical" href="https://pavnxet.github.io/YT-Video-Batch-Publisher/settings.html">
+<link rel="icon" href="assets/icons/icon48.png">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <a class="brand" href="index.html"><img src="assets/icons/icon128.png" alt=""><span>Batch Publisher</span></a>
+  <div class="header-spacer"></div>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="install.html">Install</a>
+    <a href="usage.html">Usage</a>
+    <a href="settings.html" aria-current="page">Settings</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="usage.html">Usage</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="faq.html">Troubleshooting</a></li>
+    </ul>
+    <h4>Project</h4>
+    <ul>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub repository</a></li>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Report an issue</a></li>
+    </ul>
+  </aside>
+
+  <main class="content" id="main">
+    <h1>Settings</h1>
+    <p class="lead">Open them from the ⚙️ gear in the popup, or from the extension's card in your
+    browser's extensions page.</p>
+
+    <p>Everything is stored in <code>chrome.storage.sync</code>, so your preferences follow you to any
+    browser you sign into — and nothing is ever sent anywhere else.</p>
+
+    <img class="shot" src="assets/screenshots/options.png"
+         alt="The settings page, showing publishing options, toggles for made for kids, continue on error, auto-close, dry run and debug logging, and a theme selector.">
+    <p class="caption">The settings page.</p>
+
+    <h2>Publishing</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Default</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Default visibility</strong></td>
+            <td>Unlisted</td>
+            <td>Which visibility the popup pre-selects. You can always override it per run.</td>
+          </tr>
+          <tr>
+            <td><strong>Action delay</strong></td>
+            <td>400 ms</td>
+            <td>Pause between finishing one video and starting the next. Raise it on a slow connection; lower it to go faster.</td>
+          </tr>
+          <tr>
+            <td><strong>Step timeout</strong></td>
+            <td>10 000 ms</td>
+            <td>How long to wait for a UI element to appear before treating the step as failed. Raise it on a very slow machine.</td>
+          </tr>
+          <tr>
+            <td><strong>Retries per video</strong></td>
+            <td>1</td>
+            <td>How many extra attempts a video gets after a failure. Set to 0 to fail fast.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Behaviour</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Default</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Made for kids</strong></td>
+            <td>Off</td>
+            <td>The answer given to YouTube's "made for kids" question. Off means <em>"No, it's not made for kids"</em>.</td>
+          </tr>
+          <tr>
+            <td><strong>Continue on error</strong></td>
+            <td>On</td>
+            <td>When on, a failed video is reported and the batch moves on. When off, the first failure stops the run.</td>
+          </tr>
+          <tr>
+            <td><strong>Auto-close share dialog</strong></td>
+            <td>On</td>
+            <td>Dismisses the "video published" popup after each save. Turn it off if you like reading them.</td>
+          </tr>
+          <tr>
+            <td><strong>Dry run by default</strong></td>
+            <td>Off</td>
+            <td>Makes the popup open in dry-run mode. Useful while you are getting comfortable with the tool.</td>
+          </tr>
+          <tr>
+            <td><strong>Debug logging</strong></td>
+            <td>Off</td>
+            <td>Verbose output in the browser console. Worth turning on before reporting a bug.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Appearance</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Default</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Theme</strong></td>
+            <td>Match system</td>
+            <td>Light, dark, or follow your operating system's preference.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>↩️ Restoring defaults</strong>
+      <p>The <em>Restore defaults</em> button at the bottom of the settings page resets every option in
+      one go. Your drafts and published videos are untouched.</p>
+    </div>
+
+    <h2>Suggested configurations</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="ico">🛡️</span>
+        <h3>Cautious</h3>
+        <p>Dry run on, continue on error on, retries 2, action delay 800 ms. Best for a first run on an
+        unfamiliar channel.</p>
+      </div>
+      <div class="card">
+        <span class="ico">⚡</span>
+        <h3>Fast</h3>
+        <p>Dry run off, retries 0, action delay 150 ms, step timeout 6 000 ms. For a fast machine and a
+        batch you are confident about.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🐢</span>
+        <h3>Slow connection</h3>
+        <p>Action delay 1 200 ms, step timeout 20 000 ms, retries 2. Gives Studio plenty of room to
+        catch up.</p>
+      </div>
+    </div>
+
+    <nav class="pager">
+      <a href="usage.html">← Usage</a>
+      <a class="next" href="faq.html">Troubleshooting →</a>
+    </nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>MIT licensed · © pavnxet</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Issues</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/LICENSE">License</a>
+  </div>
+</footer>
+</body>
+</html>

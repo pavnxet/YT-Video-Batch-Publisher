@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usage — YouTube Video Batch Publisher</title>
+<meta name="description" content="Step-by-step guide to batch publishing YouTube Studio drafts, using dry run, and stopping a batch in progress.">
+<link rel="canonical" href="https://pavnxet.github.io/YT-Video-Batch-Publisher/usage.html">
+<link rel="icon" href="assets/icons/icon48.png">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <a class="brand" href="index.html"><img src="assets/icons/icon128.png" alt=""><span>Batch Publisher</span></a>
+  <div class="header-spacer"></div>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="install.html">Install</a>
+    <a href="usage.html" aria-current="page">Usage</a>
+    <a href="settings.html">Settings</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="usage.html">Usage</a></li>
+    </ul>
+    <h4>On this page</h4>
+    <ul>
+      <li><a href="#publish">Publishing drafts</a></li>
+      <li><a href="#dryrun">Using dry run</a></li>
+      <li><a href="#stopping">Stopping a batch</a></li>
+      <li><a href="#sorting">Sorting a playlist</a></li>
+      <li><a href="#tips">Tips</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="faq.html">Troubleshooting</a></li>
+    </ul>
+  </aside>
+
+  <main class="content" id="main">
+    <h1>Usage</h1>
+    <p class="lead">From opening Studio to a finished batch, in about a minute.</p>
+
+    <h2 id="publish">Publishing drafts</h2>
+    <ol class="steps">
+      <li>
+        <strong>Open your content page</strong>
+        Go to <a href="https://studio.youtube.com/">YouTube Studio</a> and make sure you are on the
+        <em>Content</em> tab, where the video list is visible.
+      </li>
+      <li>
+        <strong>Filter to drafts (recommended)</strong>
+        Click the <em>Filter</em> box and select <em>Drafts</em>. The extension publishes exactly the
+        rows visible on the page, so filtering is the most precise way to control what goes out.
+      </li>
+      <li>
+        <strong>Open the extension</strong>
+        Click the icon in your toolbar. The popup shows a count of the drafts it can see.
+      </li>
+      <li>
+        <strong>Choose a visibility</strong>
+        <em>Public</em>, <em>Unlisted</em> or <em>Private</em>. This is remembered for next time.
+      </li>
+      <li>
+        <strong>Set your options</strong>
+        Flip <em>Made for kids</em> if these videos are aimed at children, and consider
+        <em>Dry run</em> for a first attempt.
+      </li>
+      <li>
+        <strong>Press "Publish drafts"</strong>
+        The progress bar fills as each video is handled, and the log lists the result of each one.
+      </li>
+    </ol>
+
+    <img class="shot shot-narrow" src="assets/screenshots/popup-idle.png"
+         alt="The popup before a run: three drafts found, Unlisted selected, and the Publish drafts button.">
+    <p class="caption">The popup before a run.</p>
+
+    <div class="callout warn">
+      <strong>⚠️ Keep the tab open</strong>
+      <p>The work happens inside the page, so switching the tab away is fine but closing it will end
+      the batch. If you need to work elsewhere, leave Studio in a background tab.</p>
+    </div>
+
+    <h2 id="dryrun">Using dry run</h2>
+    <p>Dry run is the safety net. It scans your drafts, reports exactly how many it found and which
+    ones, and then stops — without opening a single editor or changing a single setting.</p>
+    <p>Turn it on in the popup or make it the default in <a href="settings.html">Settings</a>. Use it
+    the first time you point the extension at a new channel, or any time you are unsure which videos
+    are actually drafts.</p>
+
+    <h2 id="stopping">Stopping a batch</h2>
+    <p>Press <strong>Stop</strong> at any point. The run halts between videos — never mid-save — so
+    whatever has already been published stays published, and whatever has not simply does not get
+    touched.</p>
+    <p>The log tells you exactly where it stopped.</p>
+
+    <h2 id="sorting">Sorting a playlist</h2>
+    <p>On a playlist page, the extension can also reorder videos alphabetically. Titles are compared
+    naturally, so <code>Part 2</code> sorts before <code>Part 10</code>, and videos with identical
+    titles are each moved individually rather than being confused for one another.</p>
+
+    <h2 id="tips">Tips</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="ico">🗂️</span>
+        <h3>Batch in groups</h3>
+        <p>Filter or scroll to a subset, publish, then move on. Smaller batches are easier to review.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🐢</span>
+        <h3>Slow connection?</h3>
+        <p>Raise the <em>Action delay</em> in Settings. It gives Studio more time to settle between videos.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🔍</span>
+        <h3>Something looked off?</h3>
+        <p>Turn on <em>Debug logging</em> and open the browser console on the Studio tab for detail.</p>
+      </div>
+      <div class="card">
+        <span class="ico">↩️</span>
+        <h3>Need to undo?</h3>
+        <p>Change the visibility back in Studio, or delete the video. Nothing here is permanent.</p>
+      </div>
+    </div>
+
+    <nav class="pager">
+      <a href="install.html">← Installation</a>
+      <a class="next" href="settings.html">Settings →</a>
+    </nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>MIT licensed · © pavnxet</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Issues</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/LICENSE">License</a>
+  </div>
+</footer>
+</body>
+</html>

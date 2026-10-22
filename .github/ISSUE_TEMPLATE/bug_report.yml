@@ -1,0 +1,87 @@
+name: 🐞 Bug report
+description: Something did not work as expected
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. The more detail you give, the faster it gets fixed.
+
+        Before filing, please turn on **Debug logging** in the extension's settings and reproduce the problem with the YouTube Studio tab's console open.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe what you saw, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open YouTube Studio → Content
+        2. Filter to Drafts
+        3. Click the extension icon
+        4. Press "Publish drafts"
+        5. ...
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 130 on Windows 11
+    validations:
+      required: true
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: Extension version
+      description: Shown at the bottom of the popup, or on the extension's card.
+      placeholder: "2.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: draft-count
+    attributes:
+      label: How many drafts were on the page?
+      placeholder: "12"
+    validations:
+      required: false
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Popup log
+      description: The list of videos and outcomes shown in the popup after the run.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: With Debug logging enabled. Paste anything from the Studio tab's console.
+      render: text
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I am on `studio.youtube.com` (the Content page), not `youtube.com`
+          required: true
+        - label: I am running the latest version, built with `npm run build`
+          required: true
+        - label: I searched existing issues and this is not a duplicate
+          required: true

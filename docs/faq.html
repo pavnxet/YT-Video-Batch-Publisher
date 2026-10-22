@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting &amp; FAQ — YouTube Video Batch Publisher</title>
+<meta name="description" content="Fixes for common problems with the YouTube Video Batch Publisher extension: drafts not detected, popup says Not on Studio, slow batches, and how to report a bug.">
+<link rel="canonical" href="https://pavnxet.github.io/YT-Video-Batch-Publisher/faq.html">
+<link rel="icon" href="assets/icons/icon48.png">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <a class="brand" href="index.html"><img src="assets/icons/icon128.png" alt=""><span>Batch Publisher</span></a>
+  <div class="header-spacer"></div>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="install.html">Install</a>
+    <a href="usage.html">Usage</a>
+    <a href="settings.html">Settings</a>
+    <a href="faq.html" aria-current="page">FAQ</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="usage.html">Usage</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="faq.html">Troubleshooting</a></li>
+    </ul>
+    <h4>Project</h4>
+    <ul>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Report an issue</a></li>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/SECURITY.md">Security policy</a></li>
+    </ul>
+  </aside>
+
+  <main class="content" id="main">
+    <h1>Troubleshooting &amp; FAQ</h1>
+    <p class="lead">The problems people hit most often, and what to do about them.</p>
+
+    <h2>Common problems</h2>
+
+    <details open>
+      <summary><strong>The popup says "Not on Studio"</strong></summary>
+      <p>The extension only activates on <code>studio.youtube.com</code>. Check that:</p>
+      <ul>
+        <li>You are on the Studio content page, not <code>youtube.com</code> or a watch page.</li>
+        <li>You are signed in to the right channel — Studio for a brand account still lives on the same hostname.</li>
+        <li>You have reloaded the page since installing or updating the extension.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary><strong>It found fewer drafts than I expected</strong></summary>
+      <p>The extension publishes exactly the rows visible on the page. If the list is filtered, or you
+      have not scrolled, the rest are not in the page yet.</p>
+      <p>Fix: clear the filter, or scroll the list until all the drafts you want are on screen, then
+      press <strong>Rescan</strong> in the popup.</p>
+    </details>
+
+    <details>
+      <summary><strong>A video failed with "Edit-draft button not found"</strong></summary>
+      <p>Usually a rendering race. Raise <em>Action delay</em> and <em>Step timeout</em> in
+      <a href="settings.html">Settings</a>, and give <em>Retries per video</em> a value of 1 or 2.</p>
+      <p>If it is always the same video, that video may need attention in Studio — for example a
+      missing required field — before it can be published at all.</p>
+    </details>
+
+    <details>
+      <summary><strong>The batch stopped halfway through</strong></summary>
+      <p>Check the log in the popup — it lists every video and its outcome. A video reported as
+      <em>error</em> is one that failed; with <em>Continue on error</em> switched on, the rest will
+      still have gone through.</p>
+      <p>Nothing is ever half-published: a video is either saved with the visibility you chose, or
+      untouched.</p>
+    </details>
+
+    <details>
+      <summary><strong>It is slower than I would like</strong></summary>
+      <p>Lower <em>Action delay</em> and <em>Step timeout</em>. There is a floor, though: the
+      extension deliberately waits for each page to settle, because moving too fast is what causes
+      failed saves.</p>
+    </details>
+
+    <details>
+      <summary><strong>YouTube changed their interface and it broke</strong></summary>
+      <p>Studio's markup is not a public API. Every selector lives in one file,
+      <code>src/core/selectors.js</code>, with ordered fallbacks — adding the new selector there is
+      usually a one-line fix.</p>
+      <p>Please <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">open an issue</a>
+      with a screenshot and we will get it updated.</p>
+    </details>
+
+    <h2>Questions</h2>
+
+    <details>
+      <summary><strong>How many videos can it publish at once?</strong></summary>
+      <p>As many drafts as are visible on the page. There is no hard limit in the extension, but
+      smaller batches are easier to review — filtering to a subset is a good habit.</p>
+    </details>
+
+    <details>
+      <summary><strong>Can I undo a publish?</strong></summary>
+      <p>Yes. Change the visibility back in YouTube Studio, or delete the video. Use <em>Dry run</em>
+      first if you are unsure what a run would do.</p>
+    </details>
+
+    <details>
+      <summary><strong>Does it collect any data?</strong></summary>
+      <p>No. There is no server, no analytics and no account. The only network traffic is the Studio
+      page talking to YouTube, exactly as it would without the extension.</p>
+    </details>
+
+    <details>
+      <summary><strong>Will it publish videos that are not drafts?</strong></summary>
+      <p>No. It only touches rows that expose an edit-draft control, which is what distinguishes a
+      draft from an already-published video.</p>
+    </details>
+
+    <details>
+      <summary><strong>Does it work with brand accounts?</strong></summary>
+      <p>Yes — Studio uses the same hostname for brand accounts, so nothing changes.</p>
+    </details>
+
+    <details>
+      <summary><strong>Why do I have to build it myself?</strong></summary>
+      <p>The build turns one source tree into both a Chrome and a Firefox package, which keeps the two
+      from drifting apart. It takes a few seconds — see <a href="install.html">Installation</a>.</p>
+    </details>
+
+    <h2>Reporting a bug</h2>
+    <p>Before you file it, please:</p>
+    <ol class="steps">
+      <li><strong>Turn on Debug logging</strong> in Settings.</li>
+      <li><strong>Reproduce the problem</strong> with the Studio tab's browser console open.</li>
+      <li><strong>Note what you saw</strong> — the popup's log, the console output, and roughly how
+      many drafts were on the page.</li>
+      <li><strong>Open an issue</strong> with those details and your browser version.</li>
+    </ol>
+    <p>
+      <a class="btn btn-primary" href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues/new/choose">🐞 Open an issue</a>
+    </p>
+
+    <nav class="pager">
+      <a href="settings.html">← Settings</a>
+      <span></span>
+    </nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>MIT licensed · © pavnxet</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Issues</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/LICENSE">License</a>
+  </div>
+</footer>
+</body>
+</html>

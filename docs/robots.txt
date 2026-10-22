@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pavnxet.github.io/YT-Video-Batch-Publisher/sitemap.xml

@@ -1,0 +1,2 @@
+This file tells GitHub Pages to serve the docs/ directory as static files
+without running Jekyll, so the hand-written HTML is published exactly as-is.

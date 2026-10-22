@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installation — YouTube Video Batch Publisher</title>
+<meta name="description" content="How to install the YouTube Video Batch Publisher extension in Chrome, Edge, Brave and Firefox, including building it from source.">
+<link rel="canonical" href="https://pavnxet.github.io/YT-Video-Batch-Publisher/install.html">
+<link rel="icon" href="assets/icons/icon48.png">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <a class="brand" href="index.html"><img src="assets/icons/icon128.png" alt=""><span>Batch Publisher</span></a>
+  <div class="header-spacer"></div>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="install.html" aria-current="page">Install</a>
+    <a href="usage.html">Usage</a>
+    <a href="settings.html">Settings</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="usage.html">Usage</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="faq.html">Troubleshooting</a></li>
+    </ul>
+    <h4>Project</h4>
+    <ul>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub repository</a></li>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Report an issue</a></li>
+    </ul>
+  </aside>
+
+  <main class="content" id="main">
+    <h1>Installation</h1>
+    <p class="lead">The extension is distributed as source, so the first step is to build it. It takes
+    about ten seconds and produces ready-to-load folders for both browsers.</p>
+
+    <h2>1. Get the code and build</h2>
+    <p>You will need <a href="https://nodejs.org/">Node.js 20 or newer</a>. Nothing else.</p>
+
+<pre><code>git clone https://github.com/pavnxet/YT-Video-Batch-Publisher.git
+cd YT-Video-Batch-Publisher
+npm install
+npm run build</code></pre>
+
+    <p>That writes two folders:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Folder</th><th>Use it for</th></tr></thead>
+        <tbody>
+          <tr><td><code>dist/chrome</code></td><td>Chrome, Edge, Brave, Opera, Vivaldi</td></tr>
+          <tr><td><code>dist/firefox</code></td><td>Firefox 115 and newer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>📦 Why a build step?</strong>
+      <p>One source tree generates both browser packages. Without it, the Chrome and Firefox copies
+      drift apart over time — a class of bug that is invisible until someone notices a feature is
+      missing in one browser.</p>
+    </div>
+
+    <h2>2a. Load it in Chrome, Edge, Brave or Opera</h2>
+    <ol class="steps">
+      <li><strong>Open the extensions page</strong> Go to <code>chrome://extensions/</code>
+      (or <code>edge://extensions/</code>, <code>brave://extensions/</code>).</li>
+      <li><strong>Turn on Developer mode</strong> The toggle sits in the top-right corner.</li>
+      <li><strong>Click "Load unpacked"</strong> It appears in the toolbar once Developer mode is on.</li>
+      <li><strong>Select the <code>dist/chrome</code> folder</strong> Not the repository root — the
+      manifest lives inside <code>dist/chrome</code>.</li>
+      <li><strong>Pin it</strong> Click the puzzle-piece icon in the toolbar and pin
+      <em>YouTube Video Batch Publisher</em> so it is always one click away.</li>
+    </ol>
+
+    <h2>2b. Load it in Firefox</h2>
+    <ol class="steps">
+      <li><strong>Open the debugging page</strong> Go to <code>about:debugging#/runtime/this-firefox</code>.</li>
+      <li><strong>Click "Load Temporary Add-on…"</strong></li>
+      <li><strong>Select <code>dist/firefox/manifest.json</code></strong> Pick the manifest file itself,
+      not the folder.</li>
+    </ol>
+
+    <div class="callout warn">
+      <strong>⚠️ Temporary means temporary</strong>
+      <p>A temporary add-on disappears when Firefox restarts. For a permanent install, sign the build:</p>
+      <pre><code>npx web-ext build -s dist/firefox</code></pre>
+    </div>
+
+    <h2>3. Confirm it is working</h2>
+    <p>Open <a href="https://studio.youtube.com/">YouTube Studio</a> and click the extension icon. You
+    should see a green <strong>YouTube Studio</strong> badge and a count of the drafts it can find on
+    the page.</p>
+    <p>If it says <em>"Not on Studio"</em>, you are on a different tab or a different hostname — see
+    <a href="faq.html">Troubleshooting</a>.</p>
+
+    <h2>Permissions, explained</h2>
+    <p>The extension asks for the minimum it needs, and nothing more.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><code>storage</code></td><td>Remembers your settings in <code>chrome.storage.sync</code>.</td></tr>
+          <tr><td><code>activeTab</code></td><td>Lets the popup talk to the tab you are looking at.</td></tr>
+          <tr><td><code>scripting</code></td><td>Injects the automation script if the page was already open when you installed.</td></tr>
+          <tr><td><code>host: studio.youtube.com</code></td><td>Scoped to YouTube Studio only. It has no access to any other site.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Updating</h2>
+<pre><code>git pull
+npm install
+npm run build</code></pre>
+    <p>Then click the reload ⟳ button on the extension's card in <code>chrome://extensions/</code>.</p>
+
+    <nav class="pager">
+      <a href="index.html">← Overview</a>
+      <a class="next" href="usage.html">Usage →</a>
+    </nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>MIT licensed · © pavnxet</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Issues</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/LICENSE">License</a>
+  </div>
+</footer>
+</body>
+</html>

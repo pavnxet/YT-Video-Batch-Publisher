@@ -98,8 +98,69 @@ async function validateTarget(target) {
   ok(`${target}: v${manifest.version}, ${(await readdir(dir)).length} entries`);
 }
 
+/**
+ * The docs site is hand-written HTML served by GitHub Pages straight from docs/.
+ * That means there is no build step to catch a broken link, so check it here.
+ */
+async function validateDocs() {
+  const dir = path.join(root, 'docs');
+  if (!(await exists(dir))) { fail('docs/: missing documentation site'); return; }
+
+  if (!(await exists(path.join(dir, '.nojekyll')))) {
+    fail('docs/: .nojekyll missing — Pages would run Jekyll over the static site');
+  }
+
+  const pages = (await readdir(dir)).filter((f) => f.endsWith('.html')).sort();
+  if (!pages.includes('index.html')) fail('docs/: no index.html — Pages would have no home page');
+
+  const canonical = new Map();
+  const siteBase = 'https://pavnxet.github.io/YT-Video-Batch-Publisher/';
+
+  for (const page of pages) {
+    const html = await readFile(path.join(dir, page), 'utf8');
+
+    if (!/<meta charset="UTF-8">/i.test(html)) fail(`docs/${page}: missing UTF-8 charset`);
+    if (!/<title>[^<]{10,}<\/title>/i.test(html)) fail(`docs/${page}: missing or too-short <title>`);
+    if (!/<meta name="description" content="[^"]{40,}"/i.test(html)) fail(`docs/${page}: missing meta description`);
+    if (!/<meta name="viewport"/i.test(html)) fail(`docs/${page}: missing viewport meta`);
+    if (!/<html lang="/i.test(html)) fail(`docs/${page}: missing lang attribute`);
+
+    const can = html.match(/<link rel="canonical" href="([^"]+)"/);
+    if (!can) fail(`docs/${page}: missing canonical link`);
+    else {
+      if (canonical.has(can[1])) fail(`docs/${page}: canonical duplicates docs/${canonical.get(can[1])}`);
+      canonical.set(can[1], page);
+      if (!can[1].startsWith(siteBase)) fail(`docs/${page}: canonical "${can[1]}" is outside ${siteBase}`);
+    }
+
+    // Local references must resolve inside docs/.
+    const refs = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((m) => m[1]);
+    for (const ref of refs) {
+      if (/^(https?:|mailto:|#|data:)/.test(ref)) continue;
+      const clean = ref.split('#')[0].split('?')[0];
+      if (!clean) continue;
+      if (!(await exists(path.join(dir, clean)))) fail(`docs/${page}: broken local reference "${ref}"`);
+    }
+  }
+
+  // sitemap must match the pages that actually exist.
+  const sitemap = await readFile(path.join(dir, 'sitemap.xml'), 'utf8');
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  for (const page of pages) {
+    const url = siteBase + (page === 'index.html' ? '' : page);
+    if (!locs.includes(url)) fail(`docs/sitemap.xml: missing entry for ${page}`);
+  }
+  for (const loc of locs) {
+    const rel = loc.replace(siteBase, '') || 'index.html';
+    if (!pages.includes(rel)) fail(`docs/sitemap.xml: "${loc}" does not match a page`);
+  }
+
+  ok(`docs: ${pages.length} pages, all local references resolve`);
+}
+
 const targets = process.argv.slice(2).filter((a) => !a.startsWith('-'));
 for (const t of (targets.length ? targets : ['chrome', 'firefox'])) await validateTarget(t);
+await validateDocs();
 
 notes.forEach((n) => console.log('✔', n));
 if (problems.length) {

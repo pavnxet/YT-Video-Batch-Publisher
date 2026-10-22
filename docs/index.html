@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouTube Video Batch Publisher — publish YouTube Studio drafts in one click</title>
+<meta name="description" content="A free Chrome and Firefox extension that batch-publishes YouTube Studio drafts. Choose Public, Unlisted or Private, watch live progress, and stop any time. Zero dependencies, no accounts.">
+<meta name="keywords" content="youtube batch publisher, publish youtube drafts, youtube studio automation, bulk publish youtube, chrome extension, firefox addon, youtube unlisted private">
+<link rel="canonical" href="https://pavnxet.github.io/YT-Video-Batch-Publisher/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YouTube Video Batch Publisher">
+<meta property="og:description" content="Publish every YouTube Studio draft in one click — with live progress and a working Stop button.">
+<meta property="og:url" content="https://pavnxet.github.io/YT-Video-Batch-Publisher/">
+<meta property="og:image" content="https://pavnxet.github.io/YT-Video-Batch-Publisher/assets/screenshots/popup-running.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/icon48.png">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <a class="brand" href="index.html">
+    <img src="assets/icons/icon128.png" alt="">
+    <span>Batch Publisher</span>
+  </a>
+  <div class="header-spacer"></div>
+  <nav>
+    <a href="index.html" aria-current="page">Overview</a>
+    <a href="install.html">Install</a>
+    <a href="usage.html">Usage</a>
+    <a href="settings.html">Settings</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="usage.html">Usage</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="faq.html">Troubleshooting</a></li>
+    </ul>
+    <h4>Project</h4>
+    <ul>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub repository</a></li>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Report an issue</a></li>
+      <li><a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CONTRIBUTING.md">Contributing</a></li>
+    </ul>
+  </aside>
+
+  <main class="content" id="main">
+    <div class="hero">
+      <h1>Publish every YouTube Studio draft in one click</h1>
+      <p class="lead">Pick a visibility, press one button, and watch them all go out — with a live
+      progress bar and a Stop button you can actually use.</p>
+      <div class="badges">
+        <img src="https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?logo=googlechrome&logoColor=white" alt="Chrome Manifest V3">
+        <img src="https://img.shields.io/badge/Firefox-115%2B-FF7139?logo=firefoxbrowser&logoColor=white" alt="Firefox 115+">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT licence">
+        <img src="https://img.shields.io/badge/dependencies-0-brightgreen" alt="Zero dependencies">
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="install.html">📥 Install it</a>
+        <a class="btn btn-ghost" href="usage.html">🎬 See how it works</a>
+      </div>
+    </div>
+
+    <img class="shot shot-narrow" src="assets/screenshots/popup-running.png"
+         alt="The popup mid-run: a progress bar reading 67%, and a log listing two published videos and one failure.">
+    <p class="caption">The popup while a batch is running.</p>
+
+    <h2>The problem</h2>
+    <p>You have finished a batch of videos. They are sitting in YouTube Studio as <strong>drafts</strong>,
+    waiting for you to open each one, click through the visibility step, answer the "made for kids"
+    question, hit save, and dismiss the confirmation popup.</p>
+    <p>Then do it again. And again. Twenty uploads means twenty rounds of the same four clicks.</p>
+
+    <h2>What this does</h2>
+    <p>It runs that loop for you. Point it at your content page, choose a visibility, and press one
+    button.</p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="ico">⚡</span>
+        <h3>Batch publish</h3>
+        <p>Publishes every draft visible on your Studio content page in a single run.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🎛️</span>
+        <h3>You choose the visibility</h3>
+        <p>Public, Unlisted or Private — matched by the option's label, so the right one is always selected.</p>
+      </div>
+      <div class="card">
+        <span class="ico">👶</span>
+        <h3>Made for kids, answered</h3>
+        <p>Sets YouTube's "made for kids" answer automatically to whatever you configured.</p>
+      </div>
+      <div class="card">
+        <span class="ico">📊</span>
+        <h3>Live progress</h3>
+        <p>A progress bar and a per-video log, so you always know exactly where it is.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🛑</span>
+        <h3>Stop any time</h3>
+        <p>A real Stop button that halts the run cleanly between videos.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🧪</span>
+        <h3>Dry run</h3>
+        <p>Scans your drafts and reports what it <em>would</em> do, without changing anything.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🔁</span>
+        <h3>Retries that work</h3>
+        <p>A failed video is retried, reported and skipped — the rest of the batch keeps going.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🌗</span>
+        <h3>Light &amp; dark</h3>
+        <p>Follows your system theme, or you can pin it to either one.</p>
+      </div>
+      <div class="card">
+        <span class="ico">🔒</span>
+        <h3>Stays on your machine</h3>
+        <p>No accounts, no servers, no analytics. It talks to YouTube Studio and nothing else.</p>
+      </div>
+    </div>
+
+    <h2>How it works</h2>
+    <p>The extension is three small pieces that talk to each other.</p>
+    <ol class="steps">
+      <li>
+        <strong>The popup checks the page</strong>
+        It asks the background worker for the active tab and confirms it really is
+        <code>studio.youtube.com</code> — so it never fires on the wrong site.
+      </li>
+      <li>
+        <strong>The worker forwards the request</strong>
+        It makes sure the content script is alive, injecting it on demand if the tab was already open
+        when the extension was installed, then passes the job along.
+      </li>
+      <li>
+        <strong>The content script publishes</strong>
+        For each draft row it opens the editor, sets the "made for kids" answer, walks to the
+        visibility step, selects the option whose label matches your choice, saves, and dismisses the
+        share dialog.
+      </li>
+      <li>
+        <strong>Progress streams back</strong>
+        Every step is timeout-bounded and cancellable. Failures are retried and reported instead of
+        being swallowed, and the popup updates as it goes.
+      </li>
+    </ol>
+
+    <div class="callout">
+      <strong>💡 A note on reliability</strong>
+      <p>YouTube Studio's markup is not a public API, so every selector lives in one file
+      (<code>src/core/selectors.js</code>) with ordered fallbacks, and options are matched by their
+      visible label rather than by position. If YouTube redesigns a page, that is the one file to
+      update.</p>
+    </div>
+
+    <h2>Ready?</h2>
+    <div class="cta">
+      <a class="btn btn-primary" href="install.html">📥 Installation guide</a>
+      <a class="btn btn-ghost" href="usage.html">🎬 Usage walkthrough</a>
+    </div>
+
+    <nav class="pager">
+      <span></span>
+      <a class="next" href="install.html">Installation →</a>
+    </nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>MIT licensed · © pavnxet</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher">GitHub</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/issues">Issues</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/CHANGELOG.md">Changelog</a>
+    <a href="https://github.com/pavnxet/YT-Video-Batch-Publisher/blob/main/LICENSE">License</a>
+  </div>
+</footer>
+</body>
+</html>
