@@ -3,9 +3,6 @@ contact_links:
   - name: 📖 Documentation
     url: https://pavnxet.github.io/YT-Video-Batch-Publisher/
     about: Installation, usage, settings and troubleshooting.
-  - name: 💬 Questions and ideas
-    url: https://github.com/pavnxet/YT-Video-Batch-Publisher/discussions
-    about: Ask a question or discuss an idea before opening an issue.
   - name: 🔒 Report a security issue
     url: https://github.com/pavnxet/YT-Video-Batch-Publisher/security/advisories/new
     about: Please report vulnerabilities privately, not as a public issue.
